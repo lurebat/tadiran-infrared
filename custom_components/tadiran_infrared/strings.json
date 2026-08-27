@@ -1,0 +1,44 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "This Tadiran air conditioner has already been configured with this infrared emitter.",
+      "no_infrared_emitters": "No infrared emitter entities are available. Set up an infrared emitter integration first."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "infrared_entity_id": "Infrared emitter",
+          "infrared_receiver_entity_id": "Infrared receiver"
+        },
+        "data_description": {
+          "infrared_entity_id": "The infrared entity that will send commands to the air conditioner.",
+          "infrared_receiver_entity_id": "Optional. Updates the climate state when a compatible physical remote is received."
+        },
+        "description": "Select the infrared hardware facing your Tadiran air conditioner.",
+        "title": "Set up Tadiran infrared"
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "tadiran_ac": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "turbo": "Turbo"
+            }
+          },
+          "swing_mode": {
+            "state": {
+              "bottom": "Bottom",
+              "static": "Last position",
+              "swing": "Swing",
+              "top": "Top"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

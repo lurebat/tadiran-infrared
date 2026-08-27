@@ -1,0 +1,13 @@
+{
+  "domain": "tadiran_infrared",
+  "name": "Tadiran Infrared",
+  "codeowners": ["@Lurebat"],
+  "config_flow": true,
+  "dependencies": ["infrared"],
+  "documentation": "https://github.com/Lurebat/tadiran-infrared",
+  "integration_type": "device",
+  "iot_class": "assumed_state",
+  "issue_tracker": "https://github.com/Lurebat/tadiran-infrared/issues",
+  "version": "1.0.0"
+}
+
