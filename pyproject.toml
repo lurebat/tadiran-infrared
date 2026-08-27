@@ -7,7 +7,7 @@ name = "tadiran-infrared"
 version = "1.1.0"
 description = "Home Assistant infrared consumer integration for Tadiran inverter ACs"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 license = "MIT"
 authors = [{ name = "Lurebat" }]
 dependencies = ["infrared-protocols==9.0.0"]
