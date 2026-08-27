@@ -36,6 +36,7 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from .const import (
     CONF_INFRARED_ENTITY_ID,
     CONF_INFRARED_RECEIVER_ENTITY_ID,
+    CONF_PROFILE_DATA,
 )
 from .entity import TadiranInfraredEntity
 from .protocol import (
@@ -46,6 +47,8 @@ from .protocol import (
     TadiranMode,
     TadiranSwingMode,
 )
+from .smartir import SmartIrClimateProfile
+from .smartir_climate import SmartIrClimateEntity
 
 PARALLEL_UPDATES = 1
 
@@ -90,6 +93,17 @@ async def async_setup_entry(
 ) -> None:
     """Set up the Tadiran climate entity."""
     emitter_id = entry.data[CONF_INFRARED_ENTITY_ID]
+    if profile_data := entry.data.get(CONF_PROFILE_DATA):
+        async_add_entities(
+            [
+                SmartIrClimateEntity(
+                    entry,
+                    emitter_id,
+                    SmartIrClimateProfile.from_dict(profile_data),
+                )
+            ]
+        )
+        return
     if receiver_id := entry.data.get(CONF_INFRARED_RECEIVER_ENTITY_ID):
         async_add_entities([TadiranClimateWithReceiver(entry, emitter_id, receiver_id)])
     else:
@@ -250,6 +264,10 @@ class TadiranClimateEntity(
         preset_mode: str,
     ) -> None:
         """Commit a successfully transmitted state."""
+        if mode is HVACMode.AUTO:
+            temperature = 25.0
+        if preset_mode == PRESET_TURBO:
+            fan_mode = FAN_HIGH
         self._attr_hvac_mode = mode
         self._attr_target_temperature = temperature
         self._attr_fan_mode = fan_mode

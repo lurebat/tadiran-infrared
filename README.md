@@ -38,7 +38,11 @@ directory in your Home Assistant configuration, then restart Home Assistant.
 ## Configuration
 
 Go to **Settings > Devices & services > Add integration**, select
-**Tadiran Infrared**, and choose an infrared emitter. A receiver is optional.
+**Tadiran Infrared**, enter a SmartIR climate device code, and choose an
+infrared emitter. Device code `1344` uses the optimized Tadiran implementation
+and optionally supports a receiver. Other Broadlink/Base64 SmartIR climate
+profiles are downloaded and validated during setup, then stored locally in the
+config entry; they do not require SmartIR itself.
 
 ## Protocol
 
@@ -57,3 +61,22 @@ The encoder generates frames from climate state, replacing the 1,321
 non-empty captured commands with a small validated implementation. The
 YB1FA-specific model, light, and fixed-state bits match code set 1344.
 
+## Reusing other SmartIR profiles
+
+`custom_components/tadiran_infrared/smartir.py` provides a generic,
+hardware-independent adapter for other SmartIR climate profiles:
+
+- `BroadlinkBase64Command` converts a Broadlink Base64 capture into the signed
+  raw timings used by Home Assistant infrared emitters.
+- `SmartIrClimateProfile` validates SmartIR metadata and resolves off, optional
+  on, and complete mode/fan/swing/temperature state commands.
+- Malformed, empty, unsupported-controller, and incomplete matrix entries fail
+  explicitly instead of sending an unintended command.
+- Sparse profiles are reduced to their largest complete mode/fan/swing matrix,
+  so Home Assistant never advertises an unavailable combination.
+
+This makes Broadlink/Base64 SmartIR climate profiles directly usable through
+Home Assistant's native infrared emitter abstraction without
+reverse-engineering each protocol. Compact protocol implementations like
+Tadiran's remain preferable when available because they support receiver
+decoding and avoid storing large lookup tables.

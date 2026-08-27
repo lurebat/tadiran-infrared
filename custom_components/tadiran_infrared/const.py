@@ -4,3 +4,7 @@ DOMAIN = "tadiran_infrared"
 
 CONF_INFRARED_ENTITY_ID = "infrared_entity_id"
 CONF_INFRARED_RECEIVER_ENTITY_ID = "infrared_receiver_entity_id"
+CONF_DEVICE_CODE = "device_code"
+CONF_PROFILE_DATA = "profile_data"
+
+TADIRAN_DEVICE_CODE = "1344"

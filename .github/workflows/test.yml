@@ -21,4 +21,4 @@ jobs:
       - run: python -m ruff check .
       - run: python -m pytest
       - run: python -m compileall -q custom_components
-
+      - run: python -c "import custom_components.tadiran_infrared.climate, custom_components.tadiran_infrared.config_flow"

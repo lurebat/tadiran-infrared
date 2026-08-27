@@ -4,18 +4,26 @@
       "already_configured": "This Tadiran air conditioner has already been configured with this infrared emitter.",
       "no_infrared_emitters": "No infrared emitter entities are available. Set up an infrared emitter integration first."
     },
+    "error": {
+      "invalid_device_code": "Enter a numeric SmartIR climate device code.",
+      "profile_invalid": "The SmartIR profile could not be downloaded or is not a supported Broadlink/Base64 climate profile.",
+      "profile_not_found": "No SmartIR climate profile exists for this device code.",
+      "receiver_unsupported": "Infrared receiver tracking is currently available only for the optimized Tadiran 1344 profile."
+    },
     "step": {
       "user": {
         "data": {
+          "device_code": "SmartIR device code",
           "infrared_entity_id": "Infrared emitter",
           "infrared_receiver_entity_id": "Infrared receiver"
         },
         "data_description": {
+          "device_code": "Use 1344 for the optimized Tadiran YB1FA protocol, or enter another SmartIR climate device code for generic lookup-table support.",
           "infrared_entity_id": "The infrared entity that will send commands to the air conditioner.",
           "infrared_receiver_entity_id": "Optional. Updates the climate state when a compatible physical remote is received."
         },
-        "description": "Select the infrared hardware facing your Tadiran air conditioner.",
-        "title": "Set up Tadiran infrared"
+        "description": "Select a SmartIR climate profile and the infrared hardware facing the air conditioner.",
+        "title": "Set up infrared climate"
       }
     }
   },
@@ -41,4 +49,3 @@
     }
   }
 }
-

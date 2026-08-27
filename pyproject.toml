@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tadiran-infrared"
-version = "1.0.0"
+version = "1.1.0"
 description = "Home Assistant infrared consumer integration for Tadiran inverter ACs"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -14,11 +14,14 @@ dependencies = ["infrared-protocols==9.0.0"]
 
 [project.optional-dependencies]
 test = [
+  "homeassistant==2026.6.0",
   "pytest>=8.3",
+  "pytest-asyncio>=1.0",
   "ruff>=0.12",
 ]
 
 [tool.pytest.ini_options]
+asyncio_mode = "auto"
 testpaths = ["tests"]
 
 [tool.ruff]

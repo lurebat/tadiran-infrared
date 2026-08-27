@@ -12,12 +12,20 @@ class TadiranInfraredEntity(Entity):
 
     _attr_has_entity_name = True
 
-    def __init__(self, entry: ConfigEntry, unique_id_suffix: str) -> None:
+    def __init__(
+        self,
+        entry: ConfigEntry,
+        unique_id_suffix: str,
+        *,
+        device_name: str = "Tadiran inverter AC",
+        manufacturer: str = "Tadiran",
+        model: str = "YB1FA infrared",
+    ) -> None:
         """Initialize the entity."""
         self._attr_unique_id = f"{entry.entry_id}_{unique_id_suffix}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
-            name="Tadiran inverter AC",
-            manufacturer="Tadiran",
-            model="YB1FA infrared",
+            name=device_name,
+            manufacturer=manufacturer,
+            model=model,
         )
